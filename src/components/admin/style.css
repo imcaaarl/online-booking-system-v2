@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+.wrapper {
+  @apply min-h-screen bg-gray-50/50;
+}

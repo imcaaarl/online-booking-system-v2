@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+.sidebar {
+  @apply fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 -translate-x-80 rounded-xl border border-gray-100 bg-white shadow-sm transition-transform duration-300 xl:translate-x-0;
+}
+
+.sidebar-link {
+  @apply flex w-full items-center gap-4 rounded-lg px-4 py-3 text-center align-middle font-sans text-xs font-bold capitalize transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
+}
+
+.sidebar-link-active {
+  @apply bg-gradient-to-tr from-gray-900 to-gray-800 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85];
+}
+
+.sidebar-link-inactive {
+  @apply text-gray-900 hover:bg-gray-500/10 active:bg-gray-500/30;
+}
+
+.sidebar-title {
+  @apply block font-sans text-base leading-relaxed font-semibold tracking-normal text-gray-900 antialiased;
+}
+
+.sidebar-header {
+  @apply px-8 py-6 text-center;
+}
+
+.sidebar-close-button {
+  @apply absolute top-0 right-0 grid h-8 max-h-[32px] w-8 max-w-[32px] rounded-lg rounded-tl-none rounded-br-none text-center align-middle font-sans text-xs font-medium text-white uppercase transition-all select-none hover:bg-white/10 active:bg-white/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none xl:hidden;
+}
