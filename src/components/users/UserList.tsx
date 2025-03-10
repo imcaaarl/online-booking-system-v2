@@ -5,18 +5,34 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import './UserList.css';
 import CreateUserForm from './CreateUserForm';
 
+type UserType = {
+  name: string;
+  username: string;
+  password: string;
+}
+
 export default function UserList() {
 
-  const [users, setUsers] = useState([]);
+  // [getter, setter] = useState(default value)
+  const [sample, setSample] = useState('the quick brown fox');
+
+  const [users, setUsers] = useState<UserType[]>([]);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  /**
+   * one time data retrieval
+   */
   useEffect(() => {
     (async () => {
       const response = await fetch('/api/users');
       const allUsers = await response.json();
 
-      console.log('result: ', allUsers);
+      setUsers(allUsers)
+
+      console.log('allUsers: ', allUsers);
+
+      console.log('users: ', users)
     })()
   }, [])
 
@@ -85,7 +101,7 @@ export default function UserList() {
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <div className="table-container">
         <div className="table-header">
-          <h6 className="table-title">List of all Users
+          <h6 className="table-title">List of all Users - {sample}
           <button
             onClick={handleCreateuser}
             className="float-right px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
@@ -100,7 +116,7 @@ export default function UserList() {
           <table className="table">
             <thead>
               <tr>
-                {['Author', 'Function', 'Status', 'Employed', ''].map((heading, index) => (
+                {['Name', 'Username' , 'Action', ''].map((heading, index) => (
                   <th key={index} className="th">
                     <p className="th-text">{heading.toLowerCase()}</p>
                   </th>
@@ -108,27 +124,21 @@ export default function UserList() {
               </tr>
             </thead>
             <tbody>
-              {authors.map((author, index) => (
+              {users.map((user, index) => (
                 <tr key={index}>
                   <td className="td">
                     <div className="profile-container">
                       <div>
-                        <p className="profile-name">{author.name}</p>
-                        <p className="profile-email">{author.email}</p>
+                        <p className="profile-name">{user.name}</p>
                       </div>
                     </div>
                   </td>
                   <td className="td">
-                    <p className="function-title">{author.function}</p>
-                    <p className="function-subtitle">{author.department}</p>
-                  </td>
-                  <td className="td">
-                    <div className={author.status === 'online' ? 'status-online' : 'status-offline'}>
-                      <span>{author.status}</span>
+                    <div className="profile-container">
+                      <div>
+                        <p className="profile-username">{user.username}</p>
+                      </div>
                     </div>
-                  </td>
-                  <td className="td">
-                    <p className="employment-date">{author.employed}</p>
                   </td>
                   <td className="td">
                     <a href="#" className="edit-link">
