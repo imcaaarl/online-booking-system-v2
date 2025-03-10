@@ -46,57 +46,6 @@ export default function UserList() {
   
 
   console.log('users: ', users);
-  const authors = [
-    {
-      name: 'John Michael',
-      email: 'john@creative-tim.com',
-      function: 'Manager',
-      department: 'Organization',
-      status: 'online',
-      employed: '23/04/18',
-    },
-    {
-      name: 'Alexa Liras',
-      email: 'alexa@creative-tim.com',
-      function: 'Programator',
-      department: 'Developer',
-      status: 'offline',
-      employed: '11/01/19',
-    },
-    {
-      name: 'Laurent Perrier',
-      email: 'laurent@creative-tim.com',
-      function: 'Executive',
-      department: 'Projects',
-      status: 'online',
-      employed: '19/09/17',
-    },
-    {
-      name: 'Michael Levi',
-      email: 'michael@creative-tim.com',
-      function: 'Programator',
-      department: 'Developer',
-      status: 'online',
-      employed: '24/12/08',
-    },
-    {
-      name: 'Bruce Mars',
-      email: 'bruce@creative-tim.com',
-      function: 'Manager',
-      department: 'Executive',
-      status: 'offline',
-      employed: '04/10/21',
-    },
-    {
-      name: 'Alexander',
-      email: 'alexander@creative-tim.com',
-      function: 'Programator',
-      department: 'Developer',
-      status: 'offline',
-      employed: '14/09/20',
-    },
-  ];
-
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <div className="table-container">
