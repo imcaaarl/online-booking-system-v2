@@ -4,7 +4,11 @@ import { user } from "../../../../lib/db/migrations/schema";
 import { eq } from "drizzle-orm";
 
 /**
+ * CRUD
+ * 
  * Create a user
+ * 
+ * 
  */
 
 export async function POST(req: Request) {
@@ -18,6 +22,10 @@ export async function POST(req: Request) {
   }
 }
 
+/**
+ * 
+ * READ
+ */
 export async function GET() {
   try {
     const allUsers = await db.select().from(user);
@@ -27,6 +35,10 @@ export async function GET() {
   }
 }
 
+
+/**
+ * UPDATE
+ */
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
     const { name } = await req.json();
@@ -38,6 +50,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   }
 }
 
+/**
+ * DELETE
+ */
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
     await db.delete(user).where(eq(user.id, Number(params.id)));
