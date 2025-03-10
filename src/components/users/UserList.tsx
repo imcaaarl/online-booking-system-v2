@@ -2,9 +2,31 @@
 
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-import './style.css';
+import './UserList.css';
+import CreateUserForm from './CreateUserForm';
 
-export default function Client() {
+export default function UserList() {
+
+  const [users, setUsers] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('/api/users');
+      const allUsers = await response.json();
+
+      console.log('result: ', allUsers);
+    })()
+  }, [])
+
+  const handleCreateuser = () => {
+    setIsModalOpen(true);
+  }
+
+  
+
+  console.log('users: ', users);
   const authors = [
     {
       name: 'John Michael',
@@ -60,8 +82,17 @@ export default function Client() {
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <div className="table-container">
         <div className="table-header">
-          <h6 className="table-title">Appointments</h6>
+          <h6 className="table-title">List of all Users
+          <button
+            onClick={handleCreateuser}
+            className="float-right px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Create User
+          </button>
+          </h6>
         </div>
+        
+        
         <div className="table-wrapper">
           <table className="table">
             <thead>
@@ -107,6 +138,7 @@ export default function Client() {
           </table>
         </div>
       </div>
+      <CreateUserForm isModalOpen={isModalOpen}/>
     </div>
   );
 }
