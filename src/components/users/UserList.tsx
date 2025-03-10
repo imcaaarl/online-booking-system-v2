@@ -24,6 +24,9 @@ export default function UserList() {
     setIsModalOpen(true);
   }
 
+  const handleClose = () => {
+    setIsModalOpen(false);
+  }
   
 
   console.log('users: ', users);
@@ -138,7 +141,7 @@ export default function UserList() {
           </table>
         </div>
       </div>
-      <CreateUserForm isModalOpen={isModalOpen}/>
+      <CreateUserForm isModalOpen={isModalOpen} onClose={handleClose}/>
     </div>
   );
 }
