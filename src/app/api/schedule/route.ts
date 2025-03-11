@@ -7,15 +7,15 @@ import { schedule } from "../../../../lib/db/schema/schedule";
 /**
  * CRUD
  * 
- * Create a user
+ * Create a schedule
  * 
  * 
  */
 
 export async function POST(req: Request) {
   try {
-    const {name} = await req.json();
-    const [newschedule] = await db.insert(schedule).values({name}).returning();
+    const {name, date, time} = await req.json();
+    const [newschedule] = await db.insert(schedule).values({name, date, time}).returning();
 
     return NextResponse.json(newschedule, { status: 201 });
   } catch (error) {
@@ -33,7 +33,7 @@ export async function GET() {
   try {
     const allschedules = await db.select().from(schedule);
 
-    console.log('allUschedules: ', allschedules);
+    console.log('allSchedules: ', allschedules);
     return NextResponse.json(allschedules, { status: 200 });
   } catch (error) {
     console.log('error:',error)
@@ -50,9 +50,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     const { name } = await req.json();
     await db.update(schedule).set({ name }).where(eq(schedule.id, Number(params.id)));
 
-    return NextResponse.json({ message: "User updated" }, { status: 200 });
+    return NextResponse.json({ message: "schedule updated" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to update user" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to update schedule" }, { status: 500 });
   }
 }
 
@@ -63,8 +63,8 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
   try {
     await db.delete(schedule).where(eq(schedule.id, Number(params.id)));
 
-    return NextResponse.json({ message: "User deleted" }, { status: 200 });
+    return NextResponse.json({ message: "schedule deleted" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to delete user" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to delete schedule" }, { status: 500 });
   }
 }
