@@ -7,7 +7,8 @@ const Sidebar = () => {
       <h2 className="text-xl font-bold text-gray-700 mb-4">Dashboard</h2>
 
       {/* Home Button */}
-      <a href='/' className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-200 transition">
+      
+      <a href="/" className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-200 transition">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -19,9 +20,9 @@ const Sidebar = () => {
         </svg>
         <span className="text-gray-700 font-medium">Home</span>
       </a>
-
+      
       {/* Services Button */}
-      <a href='/services' className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-200 transition">
+      <a href="/services" className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-200 transition">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
