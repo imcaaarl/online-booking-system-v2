@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { db } from "../../../../lib/db/drizzle";
-import { user } from "../../../../lib/db/migrations/schema";
+
 import { eq } from "drizzle-orm";
+import { schedule } from "../../../../lib/db/schema/schedule";
 
 /**
  * CRUD
@@ -13,12 +14,12 @@ import { eq } from "drizzle-orm";
 
 export async function POST(req: Request) {
   try {
-    const { name, username, password } = await req.json();
-    const [newUser] = await db.insert(user).values({ name, username, password }).returning();
+    const {name} = await req.json();
+    const [newschedule] = await db.insert(schedule).values({name}).returning();
 
-    return NextResponse.json(newUser, { status: 201 });
+    return NextResponse.json(newschedule, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to create user" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to create schedule" }, { status: 500 });
   }
 }
 
@@ -30,13 +31,13 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const allUsers = await db.select().from(user);
+    const allschedules = await db.select().from(schedule);
 
-    console.log('allUsers: ', allUsers);
-    return NextResponse.json(allUsers, { status: 200 });
+    console.log('allUschedules: ', allschedules);
+    return NextResponse.json(allschedules, { status: 200 });
   } catch (error) {
     console.log('error:',error)
-    return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch schedule" }, { status: 500 });
   }
 }
 
@@ -47,7 +48,7 @@ export async function GET() {
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
     const { name } = await req.json();
-    await db.update(user).set({ name }).where(eq(user.id, Number(params.id)));
+    await db.update(schedule).set({ name }).where(eq(schedule.id, Number(params.id)));
 
     return NextResponse.json({ message: "User updated" }, { status: 200 });
   } catch (error) {
@@ -60,7 +61,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
  */
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
-    await db.delete(user).where(eq(user.id, Number(params.id)));
+    await db.delete(schedule).where(eq(schedule.id, Number(params.id)));
 
     return NextResponse.json({ message: "User deleted" }, { status: 200 });
   } catch (error) {

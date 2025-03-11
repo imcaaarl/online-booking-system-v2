@@ -1,17 +1,58 @@
+'use client';
+import { useEffect, useState } from 'react';
 import './style.css'
+type UserType = {
+  name: string;
+
+}
 
 export default function BookingForm() {
+  const [services, setServices] = useState<UserType[]>([]);
+
+  // [getter, setter] = useState(default value)
+  const [selectservice, setselectservice] = useState('');
+  const handleselect=(service: UserType)=>{
+    setselectservice(service.name)
+  }
+  
+  useEffect(() => {
+      (async () => {
+        const response = await fetch('/api/services');
+        const allServices = await response.json();
+  
+        setServices(allServices)
+  
+        console.log('allServices: ', allServices);
+  
+        console.log('services: ', services)
+      })()
+    }, [])
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-lg font-semibold mb-4">Book Your Appointment</h2>
+      <h2 className="text-lg font-semibold mb-4">Book Your Appointment {selectservice}</h2>
 
       {/* Service Details */}
+      <div className="dropdown">  
+  <button className="dropbtn">Services</button>
+  <div className="dropdown-content">
+  {services.map((service, index) => (
+                 <a onClick={() => handleselect(service)
+
+                 } key={index} href="#">{service.name}</a>
+              ))}
+    
+  </div>
+</div>
+
       <div className="flex items-center gap-4 border-b pb-4">
-        <div>
-          <h3 className="font-semibold">Men&apos;s Haircut</h3>
-          <p className="text-gray-500 text-sm">Get a professional men&apos;s haircut tailored to your style preferences.</p>
-          <span className="font-semibold">$50</span> <span className="text-gray-500">• 30 minutes</span>
-        </div>
+      {services.map((service, index) => (
+                 <div key={index}>
+                 <h3 className="font-semibold"></h3>
+                 <p className="text-gray-500 text-sm"></p>
+                 <span className="font-semibold"></span> <span className="text-gray-500"></span>
+               </div>
+              ))}
+        
       </div>
 
       {/* Date Selection */}
@@ -51,6 +92,14 @@ export default function BookingForm() {
           ))}
         </div>
       </div>
+
+      {/*Form */}
+      
+      
     </div>
   );
+}
+
+function setServices(allServices: any) {
+  throw new Error('Function not implemented.');
 }
