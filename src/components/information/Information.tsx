@@ -1,17 +1,20 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import Modal from '../modal/Modal';
 import FeedbackForm from '../feedback/FeedbackForm';
 
 const Information = () => {
-  const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+
   const openFeedback = () => {
-    setFeedbackOpen(true)
-  }
+    setFeedbackOpen(true);
+  };
+
   const closeFeedback = () => {
-    setFeedbackOpen(false)
-  }
+    setFeedbackOpen(false);
+  };
+
   return (
     <div className="grid shadow-xl ring-2 ring-cyan-500/50 rounded-xl p-10">
       <b className="p-3 text-xl">Elite Cuts Salon</b>
@@ -102,9 +105,19 @@ const Information = () => {
         <p className="p-3">Open until 5pm</p>
       </div>
 
-      <button onClick={openFeedback}>Add feedback</button>
+      {/* Feedback Button */}
+      <div className="w-full flex justify-center mt-4">
+        <button
+          onClick={openFeedback}
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        >
+          Add Feedback
+        </button>
+      </div>
+
+      {/* Feedback Modal */}
       <Modal isOpen={feedbackOpen} onClose={closeFeedback}>
-        <FeedbackForm />
+        <FeedbackForm onClose={closeFeedback} />
       </Modal>
     </div>
   );
