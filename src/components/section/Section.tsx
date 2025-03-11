@@ -5,6 +5,7 @@ import BookingForm from '../booking/BookingForm';
 import Information from '../information/Information';
 import AppointmentForm from '../appointment/AppointmentForm';
 import NavigationBar from '../nav/NavigationBar';
+import Sidebar from '../sidebar/Sidebar';
 
 export const Section = () => {
   return (
@@ -13,7 +14,9 @@ export const Section = () => {
 
       {/* Main Layout */}
       <div className="flex flex-row gap-10"> {/* Added gap for columns */}
-        <div className="basis-1/3 bg-gray-200 p-4 rounded-lg">Side Bar</div>
+        <div className="basis-1/3 bg-gray-200 p-4 rounded-lg">
+          <Sidebar/>
+        </div>
 
         <div className="basis-1/3 space-y-10"> {/* Space between Booking & Appointment Forms */}
           <BookingForm />
