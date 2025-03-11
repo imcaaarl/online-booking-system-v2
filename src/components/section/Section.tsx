@@ -1,7 +1,9 @@
-'use client'
+'use client';
 
 import React from 'react';
 import BookingForm from '../booking/BookingForm';
+import Information from '../information/Information';
+import AppointmentForm from '../appointment/AppointmentForm';
 export const Section = () => {
   return (
     <div>
@@ -12,17 +14,11 @@ export const Section = () => {
 
         <div className="solid basis-1/3 border border-2">
           <BookingForm></BookingForm>
-          <div className="flex flex-col p-8 ...">
-            <div className="solid basis-1/3">Full Name:</div>
-            <input className="border-4 border-double mb-8"></input>
-            <div className="solid basis-1/3">Phone Number:</div>
-            <input className="border-4 border-double mb-8"></input>
-            <div className="solid basis-1/3">Email:</div>
-            <input className="border-4 border-double mb-8"></input>
-            <button type="submit" className="bg-green-500 ..." onClick={()=>{}} >Submit</button>
-          </div>
+          <AppointmentForm></AppointmentForm>
         </div>
-        <div className="basis-1/3 border-2 border-solid"></div>
+        <div className="basis-1/3 border-2 border-solid">
+          <Information></Information>
+        </div>
       </div>
     </div>
   );
