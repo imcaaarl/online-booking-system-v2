@@ -8,18 +8,20 @@ import NavigationBar from '../nav/NavigationBar';
 
 export const Section = () => {
   return (
-    <div>
-      <NavigationBar></NavigationBar>
-      <div className="flex flex-row">
-        <div className="basis-1/3">Side Bar</div>
+    <div className="flex flex-col gap-10"> {/* Ensure flex for gap to work */}
+      <NavigationBar />
 
-        <div className="solid basis-1/3">
-          <BookingForm></BookingForm>
-          <AppointmentForm></AppointmentForm>
+      {/* Main Layout */}
+      <div className="flex flex-row gap-10"> {/* Added gap for columns */}
+        <div className="basis-1/3 bg-gray-200 p-4 rounded-lg">Side Bar</div>
+
+        <div className="basis-1/3 space-y-10"> {/* Space between Booking & Appointment Forms */}
+          <BookingForm />
+          <AppointmentForm />
         </div>
 
-        <div className="basis-1/3">
-          <Information></Information>
+        <div className="basis-1/3 bg-gray-100 p-4 rounded-lg">
+          <Information />
         </div>
       </div>
     </div>
