@@ -9,6 +9,8 @@ const Information = () => {
         stylists provide top-notch haircuts, coloring, and styling in a modern, relaxing
         environment.
       </p>
+
+      {/* Phone Number */}
       <div className="flex flex-row items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -26,6 +28,8 @@ const Information = () => {
         </svg>
         <p className="p-3">(555) 123-4567</p>
       </div>
+
+      {/* Address */}
       <div className="flex flex-row items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -46,9 +50,10 @@ const Information = () => {
             d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
           />
         </svg>
-
         <p className="p-3">1234 Fashion Avenue, New York, NY 10001</p>
       </div>
+
+      {/* Email */}
       <div className="flex flex-row items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -64,9 +69,10 @@ const Information = () => {
             d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
           />
         </svg>
-
         <p className="p-3">contact@elitecutssalon.com</p>
       </div>
+
+      {/* Opening Hours */}
       <div className="flex flex-row items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -82,8 +88,14 @@ const Information = () => {
             d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
           />
         </svg>
-
         <p className="p-3">Open until 5pm</p>
+      </div>
+
+      {/* Feedback Button - Placed Below */}
+      <div className="w-full flex justify-center mt-4">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+          Feedback
+        </button>
       </div>
     </div>
   );
