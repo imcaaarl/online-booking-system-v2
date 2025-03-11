@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import './style.css';
+import Modal from '../modal/Modal';
+import AppointmentForm from '../appointment/AppointmentForm';
 type UserType = {
   name: string;
 };
@@ -13,6 +15,7 @@ export default function BookingForm() {
   const handleselect = (service: UserType) => {
     setselectservice(service.name);
   };
+  const [modalOpen, setModalOpen] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -26,6 +29,12 @@ export default function BookingForm() {
       console.log('services: ', services);
     })();
   }, []);
+  const handleOpen = () => {
+    setModalOpen(true)
+  }
+  const handleClose = () => {
+    setModalOpen(false)
+  }
   return (
     <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-md">
       <h2 className="mb-4 text-lg font-semibold">Book Your Appointment {selectservice}</h2>
@@ -81,7 +90,7 @@ export default function BookingForm() {
             '11:00 AM',
             '11:30 AM',
           ].map((time) => (
-            <button key={time} className="rounded-lg border p-2 text-sm hover:bg-gray-200">
+            <button onClick={handleOpen} key={time} className="rounded-lg border p-2 text-sm hover:bg-gray-200">
               {time}
             </button>
           ))}
@@ -108,6 +117,9 @@ export default function BookingForm() {
         </div>
       </div>
 
+      <Modal isOpen={modalOpen} onClose={handleClose}>
+        <AppointmentForm></AppointmentForm>
+      </Modal>
       {/*Form */}
     </div>
   );
