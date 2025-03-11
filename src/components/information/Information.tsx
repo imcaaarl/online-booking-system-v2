@@ -1,6 +1,17 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
+import Modal from '../modal/Modal';
+import FeedbackForm from '../feedback/FeedbackForm';
 
 const Information = () => {
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const openFeedback = () => {
+    setFeedbackOpen(true)
+  }
+  const closeFeedback = () => {
+    setFeedbackOpen(false)
+  }
   return (
     <div className="grid shadow-xl ring-2 ring-cyan-500/50 rounded-xl p-10">
       <b className="p-3 text-xl">Elite Cuts Salon</b>
@@ -91,12 +102,10 @@ const Information = () => {
         <p className="p-3">Open until 5pm</p>
       </div>
 
-      {/* Feedback Button - Placed Below */}
-      <div className="w-full flex justify-center mt-4">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-          Feedback
-        </button>
-      </div>
+      <button onClick={openFeedback}>Add feedback</button>
+      <Modal isOpen={feedbackOpen} onClose={closeFeedback}>
+        <FeedbackForm />
+      </Modal>
     </div>
   );
 };

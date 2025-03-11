@@ -1,15 +1,8 @@
 import React, { FormEvent } from 'react';
 
 const AppointmentForm = () => {
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        const formData = new FormData(event.currentTarget)
-        console.log(event)
-    }
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col p-8">
+    <div className="flex flex-col p-8">
       <div className="solid basis-1/3">Full Name:</div>
       <input name='name' className="mb-8 border-4 border-double"></input>
       <div className="solid basis-1/3">Phone Number:</div>
@@ -19,7 +12,7 @@ const AppointmentForm = () => {
       <button type="submit" className="bg-green-500">
         Submit
       </button>
-    </form>
+    </div>
   );
 };
 
