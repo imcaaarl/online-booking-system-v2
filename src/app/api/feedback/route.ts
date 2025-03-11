@@ -14,8 +14,8 @@ import { feedback } from "../../../../lib/db/schema/feedback";
 
 export async function POST(req: Request) {
   try {
-    const {name, rating} = await req.json();
-    const [newschedule] = await db.insert(feedback).values({name, rating}).returning();
+    const {name, rating, remarks} = await req.json();
+    const [newschedule] = await db.insert(feedback).values({name, rating, remarks}).returning();
 
     return NextResponse.json(newschedule, { status: 201 });
   } catch (error) {

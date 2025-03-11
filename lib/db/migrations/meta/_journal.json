@@ -22,6 +22,13 @@
       "when": 1741677259827,
       "tag": "0002_freezing_luckman",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1741681928541,
+      "tag": "0003_nostalgic_richard_fisk",
+      "breakpoints": true
     }
   ]
 }
