@@ -17,7 +17,6 @@ export const Section = () => {
 
         <div className="basis-1/3 space-y-10"> {/* Space between Booking & Appointment Forms */}
           <BookingForm />
-          <AppointmentForm />
         </div>
 
         <div className="basis-1/3 bg-gray-100 p-4 rounded-lg">

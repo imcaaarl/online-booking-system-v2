@@ -15,7 +15,7 @@ export default function BookingForm() {
   const handleselect = (service: UserType) => {
     setselectservice(service.name);
   };
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -110,7 +110,7 @@ export default function BookingForm() {
             '3:00 PM',
             '3:30 PM',
           ].map((time) => (
-            <button key={time} className="rounded-lg border p-2 text-sm hover:bg-gray-200">
+            <button onClick={handleOpen} key={time} className="rounded-lg border p-2 text-sm hover:bg-gray-200">
               {time}
             </button>
           ))}
