@@ -35,7 +35,7 @@ const FeedbackForm = ({ onClose }: { onClose: () => void }) => {
 
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg">
+    <div className="p-4 bg-white rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Leave Your Feedback</h2>
 
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
