@@ -18,7 +18,6 @@ const Profile = () => {
 
   return (
     <div className="flex h-screen w-full flex-col items-center bg-gray-100 p-4">
-     < NavigationBar></NavigationBar>
       <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">
         <div className="mt-4 w-full max-w-3xl rounded-2xl border-2 border-4 border-solid border-gray-400 bg-white p-4 shadow-md">
           <div className="mb-5 flex items-start">

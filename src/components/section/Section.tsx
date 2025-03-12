@@ -10,8 +10,6 @@ import Sidebar from '../sidebar/Sidebar';
 export const Section = () => {
   return (
     <div className="flex flex-col gap-10"> 
-      <NavigationBar />
-
       <div className="flex flex-row gap-10">
         <div className="basis-1/9 bg-gray-200 p-4 rounded-lg">
         <Sidebar />
