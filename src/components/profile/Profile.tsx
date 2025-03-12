@@ -1,7 +1,8 @@
 'use client';
-
+import NavigationBar from '../nav/NavigationBar';
 import React, { useState } from 'react';
 import BookingForm from '../booking/BookingForm';
+import Icon from './Icon';
 const Profile = () => {
   const [schedules, setSchedule] = useState([]);
 
@@ -17,6 +18,7 @@ const Profile = () => {
 
   return (
     <div className="flex h-screen w-full flex-col items-center bg-gray-100 p-4">
+     < NavigationBar></NavigationBar>
       <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">
         <div className="mt-4 w-full max-w-3xl rounded-2xl border-2 border-4 border-solid border-gray-400 bg-white p-4 shadow-md">
           <div className="mb-5 flex items-start">
@@ -52,12 +54,17 @@ const Profile = () => {
               {schedules.map((value: any) => {
                 return (
                   <div
-                    className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md"
+                    className="mt-4 flex w-full max-w-3xl flex-row items-center rounded-2xl bg-white p-4 shadow-md"
                     key={value.id}
                   >
-                    <div>{value.name}</div>
-                    <div>{value.date}</div>
-                    <div>{value.time}</div>
+                    <Icon service={value.name} />
+                    <div>
+                      <div className="ml-5 text-lg">{value.name}</div>
+                      <div className='ml-5 flex flex-row gap-2'>
+                      <div>{value.date}</div> @
+                      <div>{value.time}</div>
+                      </div>
+                    </div>
                   </div>
                 );
               })}
