@@ -142,7 +142,7 @@ const Information = () => {
             <div key={value.id} className="border-black-500/50 m-2 grid rounded-lg border-1 p-3">
               <StarIcon rating={value.rating} />
               <b>{value.name}</b>
-              <div>{value.remarks}</div>
+              <div className='text-xs'>{value.remarks}</div>
             </div>
           );
         })}
