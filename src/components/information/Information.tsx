@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Modal from '../modal/Modal';
 import FeedbackForm from '../feedback/FeedbackForm';
+import StarIcon from './StarIcon';
 
 const Information = () => {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
@@ -129,14 +130,18 @@ const Information = () => {
         <FeedbackForm onClose={closeFeedback} />
       </Modal>
 
-      <button onClick={getFeedbacks}
-      className='mt-2 mb-2 flex w-full justify-center gap-3 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'>Get Feedback</button>
+      <button
+        onClick={getFeedbacks}
+        className="mt-2 mb-2 flex w-full justify-center gap-3 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+      >
+        Get Feedback
+      </button>
       <div>
         {feedbacks.map((value: any) => {
           return (
-            <div key={value.id} className="grid rounded-lg border-1 border-black-500/50 m-2 p-3">
-              <div>{value.name}</div>
-              <div>{value.rating}</div>
+            <div key={value.id} className="border-black-500/50 m-2 grid rounded-lg border-1 p-3">
+              <StarIcon rating={value.rating} />
+              <b>{value.name}</b>
               <div>{value.remarks}</div>
             </div>
           );
