@@ -3,6 +3,15 @@
 import React from 'react';
 import BookingForm from '../booking/BookingForm';
 const Profile = () => {
+
+  const getSchedules = async() => {
+    const response = await fetch("api/schedule", {
+      method: "GET"
+    })
+    const data = await response.json()
+    console.log(data)
+  }
+
   return (
     <div className="flex h-screen w-full flex-col items-center bg-gray-100 p-4">
       <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">
