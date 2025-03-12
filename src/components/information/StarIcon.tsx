@@ -7,9 +7,9 @@ interface Properties {
 const StarIcon = (properties: Properties) => {
   const { rating } = properties;
   const generateStars = (counter: number) =>
-    new Array(counter).fill('').map((value) => {
+    new Array(counter).fill('').map((valu, index) => {
       return (
-        <div>
+        <div key={index}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="gold"
