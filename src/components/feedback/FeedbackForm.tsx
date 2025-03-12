@@ -1,15 +1,38 @@
-import React, { useState } from 'react';
-
+import React, { FormEvent, useState } from 'react';
 const FeedbackForm = ({ onClose }: { onClose: () => void }) => {
-  const [service, setService] = useState('');
-  const [feedback, setFeedback] = useState('');
-  const [rating, setRating] = useState(0);
+    // const [service, setService] = useState('');
+    // const [feedback, setFeedback] = useState('');
+    // const [rating, setRating] = useState(0);
+  
+  
+    const handleSubmit = async(event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      // console.log({ service, feedback, rating }); 
+      // onClose();
+      const formdata = new FormData(event.currentTarget);
+      const formService = formdata.get('name')
+      const formRating = formdata.get('rating')
+      const formRemarks = formdata.get('remarks')
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ service, feedback, rating }); 
-    onClose(); 
-  };
+      const formBody = {
+        name: formService,
+        rating: formRating,
+        remarks: formRemarks
+      }
+
+      const response = await fetch("api/feedback", {
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(formBody),
+      })
+      console.log(response)
+    }; 
+
+
+
+
+
+
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg">
@@ -19,18 +42,29 @@ const FeedbackForm = ({ onClose }: { onClose: () => void }) => {
       
         <div>
           <label className="block text-gray-700">Service Name</label>
-          <input
+          <input name='name'
             type="text"
-            value={service}
-            onChange={(e) => setService(e.target.value)}
+
             className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
             placeholder="What service did you use?"
             required
           />
         </div>
 
-    
         <div>
+          <label className="block text-gray-700">Rate Your Experience</label>
+          <input name='rating'
+            type="text"
+
+            className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+            placeholder="From 1-5"
+            required
+          />
+        </div>
+       
+
+   
+        {/* <div>
           <label className="block text-gray-700">Rate Your Experience</label>
           <div className="flex space-x-2">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -46,14 +80,12 @@ const FeedbackForm = ({ onClose }: { onClose: () => void }) => {
               </button>
             ))}
           </div>
-        </div>
-
+        </div> */}
+      
       
         <div>
           <label className="block text-gray-700">Your Feedback</label>
-          <textarea
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
+          <input name="remarks"
             className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
             placeholder="Tell us about your experience..."
             required
