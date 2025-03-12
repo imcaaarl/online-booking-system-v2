@@ -16,14 +16,15 @@ const Information = () => {
   };
 
   const getFeedbacks = async() => {
-    const response = await fetch("api/feedback", {
-      method: "GET"
-    })
-    const data = await response.json()
-    console.log(data)
-  }
+  const response = await fetch("api/feedback", {
+    method:'GET'
+  })
+ const data= await response.json()
+ console.log(data)
 
 
+
+ }
   return (
     <div className="grid shadow-xl ring-2 ring-cyan-500/50 rounded-xl p-10">
       <b className="p-3 text-xl">Elite Cuts Salon</b>
@@ -128,6 +129,10 @@ const Information = () => {
       <Modal isOpen={feedbackOpen} onClose={closeFeedback}>
         <FeedbackForm onClose={closeFeedback} />
       </Modal>
+
+    <button onClick={getFeedbacks}>Get Feedback</button>
+
+
     </div>
   );
 };
