@@ -20,6 +20,8 @@ const AppointmentForm = () => {
     })
     console.log(response)
   }
+
+ 
   return (
     <form onSubmit={submit} className="flex flex-col p-8 space-y-4">
       <div className="solid basis-1/3 font-bold">Service Name:</div>

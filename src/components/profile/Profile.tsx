@@ -1,23 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import BookingForm from '../booking/BookingForm';
 const Profile = () => {
+  const [schedules, setSchedule] = useState([]);
 
-  const getSchedules = async() => {
-    const response = await fetch("api/schedule", {
-      method: "GET"
-    })
-    const data = await response.json()
-    console.log(data)
-  }
+  const getSchedule = async () => {
+    const response = await fetch('api/schedule', {
+      method: 'GET',
+    });
+    const data = await response.json();
+    setSchedule(data);
+  };
+
+  console.log(schedules);
 
   return (
     <div className="flex h-screen w-full flex-col items-center bg-gray-100 p-4">
       <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">
-        <div className=" border-2 border-solid mt-4 border-4 border-gray-400 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">
+        <div className="mt-4 w-full max-w-3xl rounded-2xl border-2 border-4 border-solid border-gray-400 bg-white p-4 shadow-md">
           <div className="mb-5 flex items-start">
-            <div  className="flex items-center flex justify-center mr-4 h-16 w-16 rounded-2xl bg-gray-300">
+            <div className="mr-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -42,17 +45,29 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className=" border-2 border-solid border-4 border-gray-400 mt-5 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">
+        <div className="mt-5 w-full max-w-3xl rounded-2xl border-2 border-4 border-solid border-gray-400 bg-white p-4 shadow-md">
           <div>
-            <div className=" mb-2 font-bold">My Appointments</div>
-            <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">Time & Date - Service</div>
-            <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">Time & Date - Service</div>
-            <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">Time & Date - Service</div>
-            <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">Time & Date - Service</div>
-            <div className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md">Time & Date - Service</div>
+            <div className="mb-2 font-bold">My Appointments</div>
+            <div>
+              {schedules.map((value: any) => {
+                return (
+                  <div
+                    className="mt-4 w-full max-w-3xl rounded-2xl bg-white p-4 shadow-md"
+                    key={value.id}
+                  >
+                    <div>{value.name}</div>
+                    <div>{value.date}</div>
+                    <div>{value.time}</div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
+      <button onClick={getSchedule} className="border-1 p-2">
+        Get Schedule
+      </button>
     </div>
   );
 };
