@@ -6,27 +6,26 @@ import FeedbackForm from '../feedback/FeedbackForm';
 
 const Information = () => {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [feedbacks, setFeedbacks] = useState([]);
 
   const openFeedback = () => {
     setFeedbackOpen(true);
   };
-
   const closeFeedback = () => {
     setFeedbackOpen(false);
   };
 
-  const getFeedbacks = async() => {
-  const response = await fetch("api/feedback", {
-    method:'GET'
-  })
- const data= await response.json()
- console.log(data)
+  const getFeedbacks = async () => {
+    const response = await fetch('api/feedback', {
+      method: 'GET',
+    });
+    const data = await response.json();
+    setFeedbacks(data);
+  };
+  console.log(feedbacks);
 
-
-
- }
   return (
-    <div className="grid shadow-xl ring-2 ring-cyan-500/50 rounded-xl p-10">
+    <div className="grid rounded-xl p-10 shadow-xl ring-2 ring-cyan-500/50">
       <b className="p-3 text-xl">Elite Cuts Salon</b>
       <p className="p-3">
         Elite Cuts Salon offers premium hair services tailored to your style. Our experienced
@@ -116,10 +115,10 @@ const Information = () => {
       </div>
 
       {/* Feedback Button */}
-      <div className="w-full flex justify-center mt-4">
+      <div className="mt-4 flex w-full justify-center">
         <button
           onClick={openFeedback}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         >
           Add Feedback
         </button>
@@ -130,9 +129,19 @@ const Information = () => {
         <FeedbackForm onClose={closeFeedback} />
       </Modal>
 
-    <button onClick={getFeedbacks}>Get Feedback</button>
-
-
+      <button onClick={getFeedbacks}
+      className='mt-2 mb-2 flex w-full justify-center gap-3 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'>Get Feedback</button>
+      <div>
+        {feedbacks.map((value: any) => {
+          return (
+            <div key={value.id} className="grid rounded-lg border-1 border-black-500/50 m-2 p-3">
+              <div>{value.name}</div>
+              <div>{value.rating}</div>
+              <div>{value.remarks}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
