@@ -4,13 +4,7 @@ import { db } from "../../../../lib/db/drizzle";
 import { eq } from "drizzle-orm";
 import { schedule } from "../../../../lib/db/schema/schedule";
 
-/**
- * CRUD
- * 
- * Create a schedule
- * 
- * 
- */
+
 
 export async function POST(req: Request) {
   try {

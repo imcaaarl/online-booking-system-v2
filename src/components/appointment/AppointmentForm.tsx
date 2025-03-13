@@ -3,8 +3,7 @@ import React, { FormEvent } from 'react';
 interface FormProps{
   onClose: () => void
 }
-
-const AppointmentForm = (properties: FormProps) => {
+const AppointmentForm = (properties:FormProps) => {
   const submit = async(event: FormEvent<HTMLFormElement>) =>{
     event.preventDefault()
     const formdata = new FormData(event.currentTarget);

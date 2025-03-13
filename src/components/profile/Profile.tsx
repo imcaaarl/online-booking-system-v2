@@ -74,9 +74,6 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <button onClick={getSchedule} className="mt-8 border-1 bg-green-400 p-2">
-        Get Schedule
-      </button>
     </div>
   );
 };
