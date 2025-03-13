@@ -2,7 +2,7 @@ import React from 'react';
 
 const Sidebar = () => {
   return (
-    <div className="flex h-screen w-64 flex-col gap-5 bg-[#FDFDFD] p-5 shadow-lg border-2 border-[#016A70] rounded-xl">
+    <div className="flex h-screen w-64 flex-col gap-5 bg-[#fdfdfd] p-5 shadow-lg border-2 border-[#016A70] rounded-xl">
       {/* Sidebar Title */}
       <h2 className="mb-4 text-xl font-bold text-[#2C2C2C]">Dashboard</h2>
 
