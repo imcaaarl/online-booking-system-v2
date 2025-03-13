@@ -24,7 +24,12 @@ const Information = () => {
     }
   };
 
-  // Delete feedback function
+
+  const handleFeedbackAdded = async () => {
+    await getFeedbacks();
+    closeFeedback();
+  };
+
   const deleteFeedback = async (id: number) => {
     try {
       const response = await fetch('/api/feedback', {
@@ -36,7 +41,7 @@ const Information = () => {
       if (!response.ok) throw new Error('Failed to delete feedback');
 
       // Remove deleted feedback from the state
-      setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((feedback) => feedback.id!== id));
+      setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((feedback: any) => feedback.id !== id));
     } catch (error) {
       console.error('Error deleting feedback:', error);
     }
@@ -81,6 +86,7 @@ const Information = () => {
         <p className="p-3">(555) 123-4567</p>
       </div>
 
+      {/* Address */}
       <div className="flex flex-row items-center text-[#2C2C2C]">
         <svg
           className="size-8 pl-3 text-[#016A70]"
@@ -128,9 +134,9 @@ const Information = () => {
         </button>
       </div>
 
-      {/* Feedback Modal */}
+      {/* Feedback Modal (Updated) */}
       <Modal isOpen={feedbackOpen} onClose={closeFeedback}>
-        <FeedbackForm onClose={closeFeedback} />
+        <FeedbackForm onClose={handleFeedbackAdded} />
       </Modal>
 
       {/* Feedback List */}
@@ -145,7 +151,10 @@ const Information = () => {
             <div className="text-xs">{value.remarks}</div>
 
             <div className="mt-2 flex justify-center">
-              <button onClick={() => deleteFeedback(value.id)} className="border rounded-lg px-4 py-2 text-[#FDFDFD] bg-[#FF0000] hover:bg-[#014D50]">
+              <button
+                onClick={() => deleteFeedback(value.id)}
+                className="border rounded-lg px-4 py-2 text-[#FDFDFD] bg-[#FF0000] hover:bg-[#014D50]"
+              >
                 Delete Feedback
               </button>
             </div>
