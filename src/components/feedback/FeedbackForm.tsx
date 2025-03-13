@@ -1,4 +1,6 @@
 import React, { FormEvent, useState } from 'react';
+
+
 const FeedbackForm = ({ onClose }: { onClose: () => void }) => {
   // const [service, setService] = useState('');
   // const [feedback, setFeedback] = useState('');
@@ -27,6 +29,9 @@ const FeedbackForm = ({ onClose }: { onClose: () => void }) => {
     console.log(response);
 
     window.alert('Saved Successfully');
+    
+    onClose()
+
   };
 
   return (

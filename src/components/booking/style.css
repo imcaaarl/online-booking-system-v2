@@ -82,15 +82,22 @@
   z-index: 1;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+/* Soft White Background */
+.bg-soft-white {
+  background-color: #FDFDFD;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+/* Emerald Button */
+.dropbtn {
+  font-family: 'Poppins', sans-serif;
+  background-color: #016A70;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropbtn:hover {
+  background-color: #014F50;
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}

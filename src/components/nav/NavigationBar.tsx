@@ -2,7 +2,7 @@ import React from 'react';
 
 const NavigationBar = () => {
   return (
-    <div className="flex items-center justify-between p-6 shadow-xl bg-[#89CFF0] rounded-xl">
+    <div className="flex items-center justify-between p-6 shadow-xl bg-[#FDFDFD] ring-2 ring-[#016A70] m-2 rounded-xl">
     <div className="w-8"></div>
     <b className="text-lg flex-grow text-center">
       Online Booking System
