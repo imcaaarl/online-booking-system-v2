@@ -38,7 +38,7 @@ export default function BookingForm() {
       <h2 className="mb-4 text-lg font-semibold">Book Your Appointment {selectservice}</h2>
 
       {/* Service Dropdown */}
-      <div className="relative inline-block">
+      <div className="relative inline-block dropbtn-container">
         <button className="dropbtn rounded-md border-2 border-[#016A70] bg-[#016A70] px-4 py-2 text-white hover:bg-[#024F53]">
           Services
         </button>

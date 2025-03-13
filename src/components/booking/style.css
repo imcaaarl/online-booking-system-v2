@@ -101,3 +101,7 @@
   background-color: #014F50;
 }
 
+.dropbtn-container:hover .dropdown-content, .dropbtn-container.hover .dropdown-content {
+  display: block;
+}
+
