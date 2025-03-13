@@ -1,8 +1,9 @@
 'use client';
-import NavigationBar from '../nav/NavigationBar';
 import React, { useEffect, useState } from 'react';
+import NavigationBar from '../nav/NavigationBar';
 import BookingForm from '../booking/BookingForm';
 import Icon from './Icon';
+
 const Profile = () => {
   const [schedules, setSchedule] = useState([]);
 
@@ -12,6 +13,14 @@ const Profile = () => {
     });
     const data = await response.json();
     setSchedule(data);
+  };
+
+  const deleteSchedule = async (id: number) => {
+    await fetch(`api/schedule`, {
+      method: 'DELETE',
+      body: JSON.stringify({ id })
+    });
+    getSchedule(); // Refresh schedule after deletion
   };
 
   useEffect(() => {
@@ -67,6 +76,12 @@ const Profile = () => {
                         <div>{value.date}</div> @<div>{value.time}</div>
                       </div>
                     </div>
+                    <button 
+                      className="ml-auto rounded-lg bg-red-500 px-3 py-1 text-white hover:bg-red-600"
+                      onClick={() => deleteSchedule(value.id)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 );
               })}
