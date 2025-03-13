@@ -1,6 +1,6 @@
 'use client';
 import NavigationBar from '../nav/NavigationBar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookingForm from '../booking/BookingForm';
 import Icon from './Icon';
 const Profile = () => {
@@ -13,6 +13,10 @@ const Profile = () => {
     const data = await response.json();
     setSchedule(data);
   };
+
+  useEffect(() => {
+    getSchedule();
+  }, []);
 
   console.log(schedules);
 
@@ -59,9 +63,8 @@ const Profile = () => {
                     <Icon service={value.name} />
                     <div>
                       <div className="ml-5 text-lg">{value.name}</div>
-                      <div className='ml-5 flex flex-row gap-2'>
-                      <div>{value.date}</div> @
-                      <div>{value.time}</div>
+                      <div className="ml-5 flex flex-row gap-2">
+                        <div>{value.date}</div> @<div>{value.time}</div>
                       </div>
                     </div>
                   </div>
@@ -71,9 +74,6 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <button onClick={getSchedule} className="mt-8 bg-green-400 border-1 p-2">
-        Get Schedule
-      </button>
     </div>
   );
 };

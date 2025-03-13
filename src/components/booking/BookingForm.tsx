@@ -30,11 +30,11 @@ export default function BookingForm() {
     })();
   }, []);
   const handleOpen = () => {
-    setModalOpen(true)
-  }
+    setModalOpen(true);
+  };
   const handleClose = () => {
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
   return (
     <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-md">
       <h2 className="mb-4 text-lg font-semibold">Book Your Appointment {selectservice}</h2>
@@ -51,7 +51,7 @@ export default function BookingForm() {
         </div>
       </div>
 
-      <div className="flex items-center gap-4 border-b pb-4">
+      <div className=" flex items-center gap-4 border-b pb-4">
         {services.map((service, index) => (
           <div key={index}>
             <h3 className="font-semibold"></h3>
@@ -90,7 +90,11 @@ export default function BookingForm() {
             '11:00 AM',
             '11:30 AM',
           ].map((time) => (
-            <button onClick={handleOpen} key={time} className="rounded-lg border p-2 text-sm hover:bg-gray-200">
+            <button
+              onClick={handleOpen}
+              key={time}
+              className="rounded-lg border p-2 text-sm hover:bg-gray-200"
+            >
               {time}
             </button>
           ))}
@@ -110,7 +114,11 @@ export default function BookingForm() {
             '3:00 PM',
             '3:30 PM',
           ].map((time) => (
-            <button onClick={handleOpen} key={time} className="rounded-lg border p-2 text-sm hover:bg-gray-200">
+            <button
+              onClick={handleOpen}
+              key={time}
+              className="rounded-lg border p-2 text-sm hover:bg-gray-200"
+            >
               {time}
             </button>
           ))}
@@ -118,7 +126,7 @@ export default function BookingForm() {
       </div>
 
       <Modal isOpen={modalOpen} onClose={handleClose}>
-        <AppointmentForm></AppointmentForm>
+        <AppointmentForm onClose={handleClose}></AppointmentForm>
       </Modal>
       {/*Form */}
     </div>
