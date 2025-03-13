@@ -11,11 +11,9 @@ type UserType = {
 export default function BookingForm() {
   const [services, setServices] = useState<UserType[]>([]);
   const [selectservice, setselectservice] = useState('');
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
-
-  const handleselect = (service: UserType) => {
-    setselectservice(service.name);
-  };
 
   useEffect(() => {
     (async () => {
@@ -25,7 +23,13 @@ export default function BookingForm() {
     })();
   }, []);
 
-  const handleOpen = () => {
+  const handleselect = (service: UserType) => {
+    setselectservice(service.name);
+  };
+
+  const handleOpen = (date: string, time: string) => {
+    setSelectedDate(date);
+    setSelectedTime(time);
     setModalOpen(true);
   };
 
@@ -38,13 +42,18 @@ export default function BookingForm() {
       <h2 className="mb-4 text-lg font-semibold">Book Your Appointment {selectservice}</h2>
 
       {/* Service Dropdown */}
-      <div className="relative inline-block dropbtn-container">
+      <div className="dropbtn-container relative inline-block">
         <button className="dropbtn rounded-md border-2 border-[#016A70] bg-[#016A70] px-4 py-2 text-white hover:bg-[#024F53]">
           Services
         </button>
         <div className="dropdown-content">
           {services.map((service, index) => (
-            <a onClick={() => handleselect(service)} key={index} href="#">
+            <a
+              className="block py-1 break-words whitespace-normal"
+              onClick={() => handleselect(service)}
+              key={index}
+              href="#"
+            >
               {service.name}
             </a>
           ))}
@@ -53,41 +62,48 @@ export default function BookingForm() {
 
       {/* Date Selection */}
       <div className="mt-4">
-        <h3 className="font-semibold">Monday, March 10</h3>
+        <h3 className="font-semibold">Select a Date</h3>
         <div className="mt-2 flex gap-2">
-          {['Mon 17', 'Tue 18', 'Wed 19', 'Thu 20', 'Fri 21'].map((day, index) => (
-            <button
-              key={index}
-              className="rounded-lg border bg-[#FDFDFD] px-3 py-1 text-sm hover:bg-gray-200"
-            >
-              {day}
-            </button>
-          ))}
+          {['2025-03-17', '2025-03-18', '2025-03-19', '2025-03-20', '2025-03-21'].map(
+            (day, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedDate(day)}
+                className={`rounded-lg border px-3 py-1 text-sm hover:bg-gray-200 ${
+                  selectedDate === day ? 'bg-gray-300' : 'bg-[#FDFDFD]'
+                }`}
+              >
+                {day}
+              </button>
+            ),
+          )}
         </div>
       </div>
 
       {/* Time Slots */}
       <div className="mt-4">
-        <h3 className="mb-2 font-semibold">Morning</h3>
+        <h3 className="mb-2 font-semibold">Select a Time</h3>
         <div className="grid grid-cols-4 gap-2">
-          {['8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM'].map((time) => (
+          {[
+            '08:00',
+            '08:30',
+            '09:00',
+            '09:30',
+            '10:00',
+            '10:30',
+            '11:00',
+            '11:30',
+            '12:00',
+            '12:30',
+            '13:00',
+            '13:30',
+            '14:00',
+            '14:30',
+            '15:00',
+            '15:30',
+          ].map((time) => (
             <button
-              onClick={handleOpen}
-              key={time}
-              className="rounded-lg border bg-[#FDFDFD] p-2 text-sm hover:bg-gray-200"
-            >
-              {time}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <h3 className="mb-2 font-semibold">Afternoon</h3>
-        <div className="grid grid-cols-4 gap-2">
-          {['12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'].map((time) => (
-            <button
-              onClick={handleOpen}
+              onClick={() => handleOpen(selectedDate, time)}
               key={time}
               className="rounded-lg border bg-[#FDFDFD] p-2 text-sm hover:bg-gray-200"
             >
@@ -98,9 +114,12 @@ export default function BookingForm() {
       </div>
 
       <Modal isOpen={modalOpen} onClose={handleClose}>
-        <AppointmentForm onClose={function (): void {
-          throw new Error('Function not implemented.');
-        } } />
+        <AppointmentForm
+          selectedService={selectservice}
+          selectedDate={selectedDate}
+          selectedTime={selectedTime}
+          onClose={handleClose}
+        />
       </Modal>
     </div>
   );
