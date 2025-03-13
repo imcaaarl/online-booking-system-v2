@@ -11,15 +11,15 @@ export const Section = () => {
   return (
     <div className="flex flex-col gap-10"> 
       <div className="flex flex-row gap-10">
-        <div className="basis-1/9 bg-gray-200 p-4 rounded-lg">
+        <div className="basis-1/9 bg-gray-100 p-1 rounded-lg" >
         <Sidebar />
         </div>
 
-        <div className="basis-5/9 space-y-10"> 
+        <div className="basis-5/9 space-y-10 bg-gray-100 p-1 rounded-lg"> 
           <BookingForm />
         </div>
 
-        <div className="basis-1/3 bg-gray-100 p-4 rounded-lg">
+        <div className="basis-1/3 bg-gray-100 p-1 rounded-lg">
           <Information />
         </div>
       </div>
