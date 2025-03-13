@@ -19,7 +19,9 @@ const AppointmentForm = () => {
       body: JSON.stringify(formBody)
     })
     console.log(response)
+    window.alert('Save Succesfully')
   }
+
 
  
   return (
