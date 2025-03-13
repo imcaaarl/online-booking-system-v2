@@ -61,7 +61,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
  */
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
-    await db.delete(feedback).where(eq(feedback.id, Number(params.id)));
+    const body = await req.json()
+    await db.delete(feedback).where(eq(feedback.id, Number(body.id)));
 
     return NextResponse.json({ message: "feedback deleted" }, { status: 200 });
   } catch (error) {

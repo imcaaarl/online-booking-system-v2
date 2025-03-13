@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../modal/Modal';
 import FeedbackForm from '../feedback/FeedbackForm';
 import StarIcon from './StarIcon';
@@ -24,6 +24,10 @@ const Information = () => {
     setFeedbacks(data);
   };
   console.log(feedbacks);
+
+  useEffect(() => {
+    getFeedbacks()
+  }, []);
 
   return (
     <div className="grid rounded-xl p-10 shadow-xl ring-2 ring-cyan-500/50">
@@ -142,7 +146,7 @@ const Information = () => {
             <div key={value.id} className="border-black-500/50 m-2 grid rounded-lg border-1 p-3">
               <StarIcon rating={value.rating} />
               <b>{value.name}</b>
-              <div className='text-xs'>{value.remarks}</div>
+              <div className="text-xs">{value.remarks}</div>
             </div>
           );
         })}

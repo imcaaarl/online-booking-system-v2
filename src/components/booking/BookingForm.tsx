@@ -118,7 +118,7 @@ export default function BookingForm() {
       </div>
 
       <Modal isOpen={modalOpen} onClose={handleClose}>
-        <AppointmentForm></AppointmentForm>
+        <AppointmentForm onClose={handleClose}></AppointmentForm>
       </Modal>
       {/*Form */}
     </div>

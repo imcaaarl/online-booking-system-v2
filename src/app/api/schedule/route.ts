@@ -61,7 +61,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
  */
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
-    await db.delete(schedule).where(eq(schedule.id, Number(params.id)));
+    const body = await req.json()
+    await db.delete(schedule).where(eq(schedule.id, Number(body.id)));
 
     return NextResponse.json({ message: "schedule deleted" }, { status: 200 });
   } catch (error) {

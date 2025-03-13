@@ -1,9 +1,9 @@
-import Demo from '@/components/demo/Demo'
+import DeleteDemo from '@/components/demo/DeleteDemo'
 import React from 'react'
 
 const page = () => {
   return (
-    <Demo />
+    <DeleteDemo />
   )
 }
 

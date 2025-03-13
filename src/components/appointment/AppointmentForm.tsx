@@ -1,6 +1,10 @@
 import React, { FormEvent } from 'react';
 
-const AppointmentForm = () => {
+interface FormProps{
+  onClose: () => void
+}
+
+const AppointmentForm = (properties: FormProps) => {
   const submit = async(event: FormEvent<HTMLFormElement>) =>{
     event.preventDefault()
     const formdata = new FormData(event.currentTarget);
@@ -20,6 +24,7 @@ const AppointmentForm = () => {
     })
     console.log(response)
     window.alert('Save Succesfully')
+    properties.onClose();
   }
 
 
